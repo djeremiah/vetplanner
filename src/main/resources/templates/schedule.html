@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Visit Scheduling Demo</title>
+
+  <link th:rel="stylesheet" th:href="@{webjars/patternfly__patternfly/4.50.2/patternfly.css}">
+</head>
+
+<body>
+  <div class="pf-c-page">
+    <header class="pf-c-page__header">
+
+    </header>
+    <main class="pf-c-page__main" tabindex="-1">
+      <section class="pf-c-page__main-section">
+        <div class="pf-c-action-list">
+          <div class="pf-c-action-list__item">
+            <button class="pf-c-button pf-m-primary" type="button" id="schedule-button">Solve</button>
+          </div>
+        </div>
+      </section>
+      <section class="pf-c-page__main-section">
+        <table class="pf-c-table pf-m-grid-md" role="grid" aria-label="Visit Schedule" id="visit-table">
+          <caption>Visit Schedule</caption>
+          <thead>
+            <tr role="row">
+              <th role="columnheader" scope="col"></th>
+              <th th:each="vet : ${vets}" th:text="${vet.fullName}" role="columnheader" scope="col">Vet</th>
+            </tr>
+          </thead>
+
+          <tbody role="rowgroup">
+            <tr th:each="holding : ${holdings}" role="row">
+              <td th:text="${holding.name} + ' (' + ${holding.size} + ')'" role="cell">Holding</td>
+              <td th:each="vet : ${vets}" role="cell" th:data-label="${vet.fullName}">
+                <span class="pf-c-label" th:id="'visit-' + ${holding.id} + '-' + ${vet.id}">
+                  <span class="pf-c-label__content">unscheduled</span>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script th:src="@{/js/schedule.js}"></script>
+</body>
+
+</html>

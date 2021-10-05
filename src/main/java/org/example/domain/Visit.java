@@ -40,7 +40,7 @@ public class Visit {
         this.holding = holding;
     }
 
-    @PlanningVariable(valueRangeProviderRefs = { "timeGrainRange" })
+    @PlanningVariable(valueRangeProviderRefs = { "timeGrainRange" }, nullable = true)
     public TimeGrain getStartingTimeGrain() {
         return startingTimeGrain;
     }
@@ -87,7 +87,7 @@ public class Visit {
     }
 
     public String getStartingDateTimeString() {
-        if (startingTimeGrain == null) {
+        if (startingTimeGrain == null ) {
             return null;
         }
         return startingTimeGrain.getDateTimeString();

@@ -16,6 +16,14 @@ public class TimeGrain {
     private Day day;
     private int startingMinuteOfDay;
 
+    public TimeGrain(){}
+
+    public TimeGrain(int grainIndex, Day day, int startingMinuteOfDay){
+        this.grainIndex = grainIndex;
+        this.day = day;
+        this.startingMinuteOfDay = startingMinuteOfDay;
+    }
+
     public int getGrainIndex() {
         return grainIndex;
     }

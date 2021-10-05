@@ -6,6 +6,14 @@ public class Holding {
     private String name;
     private Size size;
 
+    public Holding(){}
+
+    public Holding(long id, String name, Size size){
+        this.id = id;
+        this.name = name;
+        this.size = size;
+    }
+
     public long getId() {
         return id;
     }

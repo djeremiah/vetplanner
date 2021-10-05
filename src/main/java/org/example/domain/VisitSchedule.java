@@ -8,13 +8,18 @@ import org.optaplanner.core.api.domain.solution.PlanningScore;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
 import org.optaplanner.core.api.domain.solution.ProblemFactCollectionProperty;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
-import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
+import org.optaplanner.core.api.score.buildin.hardmediumsoft.HardMediumSoftScore;
 
 @PlanningSolution
 public class VisitSchedule {
 
+    public static final Long SINGLETON_PROBLEM_ID = 1L;
+
     @ConstraintConfigurationProvider
     private VisitConstraintConfiguration constraintConfiguration;
+
+    @ProblemFactCollectionProperty
+    private List<Holding> holdingList;
 
     @ProblemFactCollectionProperty
     private List<Day> dayList;
@@ -31,7 +36,18 @@ public class VisitSchedule {
     private List<Visit> visitList;
 
     @PlanningScore
-    private HardSoftScore score;
+    private HardMediumSoftScore score;
+
+    public VisitSchedule(){}
+
+    public VisitSchedule(List<Holding> holdingList, List<Day> dayList, List<TimeGrain> timeGrainList, List<Vet> vetList, List<Visit> visitList, VisitConstraintConfiguration constraintConfiguration){
+        this.holdingList = holdingList;
+        this.dayList = dayList;
+        this.timeGrainList = timeGrainList;
+        this.vetList = vetList;
+        this.visitList = visitList;
+        this.constraintConfiguration = constraintConfiguration;
+    }
 
     public VisitConstraintConfiguration getConstraintConfiguration() {
         return constraintConfiguration;
@@ -39,6 +55,14 @@ public class VisitSchedule {
 
     public void setConstraintConfiguration(VisitConstraintConfiguration constraintConfiguration) {
         this.constraintConfiguration = constraintConfiguration;
+    }
+
+    public List<Holding> getHoldingList() {
+        return holdingList;
+    }
+
+    public void setHoldingList(List<Holding> holdingList) {
+        this.holdingList = holdingList;
     }
 
     public List<Day> getDayList() {
@@ -73,11 +97,11 @@ public class VisitSchedule {
         this.visitList = visitList;
     }
 
-    public HardSoftScore getScore() {
+    public HardMediumSoftScore getScore() {
         return score;
     }
 
-    public void setScore(HardSoftScore score) {
+    public void setScore(HardMediumSoftScore score) {
         this.score = score;
     }
 

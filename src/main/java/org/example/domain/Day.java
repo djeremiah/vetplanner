@@ -7,7 +7,13 @@ import java.util.Locale;
 public class Day {
 
     private int dayOfYear;
-    private static final DateTimeFormatter DAY_FORMATTER = DateTimeFormatter.ofPattern("E", Locale.ENGLISH);
+    private static final DateTimeFormatter DAY_FORMATTER = DateTimeFormatter.ofPattern("E, MMM d", Locale.ENGLISH);
+
+    public Day(){}
+
+    public Day(int dayOfYear){
+        this.dayOfYear = dayOfYear;
+    }
 
     public int getDayOfYear() {
         return dayOfYear;
